@@ -8,19 +8,30 @@ const dates = [
 ];
 
 // TODO: Buatlah fungsi createDate
-const createDate = (dataBaru, index) => {
-  const sortDate = [];
-    for (let i = 0 ; i < dataBaru.length ; i++){
-      const result = (new Date(dataBaru[i]).getTime() / 1000).toString(); sortDate.push(result);
-    };
-    if (index === undefined){
-      sortDate.sort((a, b) => a - b);
-        return sortDate.join("-");
-     } else {
-        sortDate.sort((a, b) => a - b);
-        sortDate.sort((a, b) => a + b);
-        return sortDate[index];
-     }
+const createDate = (data,pos) => {
+  if( typeof pos !== 'undefined' ) {
+    for (let i = 0; i < data.length; i++) {
+        if (pos === i) {
+          let epoch = new Date(data[i]).getTime() / 1000
+          return epoch.toString();
+        }
+    }
+  } else {
+  let temp = "";
+  let arr = [];
+   for (let i = 0; i < data.length; i++) {
+      arr.push(data[i])
+   }
+   arr.sort()
+   for (let i = 0; i < arr.length; i++) {
+    if (i === arr.length -1) {
+      temp += new Date(arr[i]).getTime() / 1000
+    } else {
+      temp += new Date(arr[i]).getTime() / 1000 + "-";
+    }
+   }
+  return temp;
+  }
 };
 
 // ! JANGAN DIMODIFIKASI
